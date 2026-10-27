@@ -1,0 +1,11 @@
+.env
+.env.local
+anthropic.json
+notion.json
+supabase.json
+__pycache__/
+*.pyc
+.vercel/
+
+.vercel
+.env*

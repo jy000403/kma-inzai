@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#0f1115">
+<meta name="description" content="KMA 인재개발센터 — 고객사 × 과정 단위로 제안서와 결과보고서를 만들고 견적서·교육사진·영수증을 함께 정리합니다.">
+<title>KMA</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%231b64da'/%3E%3Ctext x='16' y='22' font-family='Segoe UI,sans-serif' font-size='15' font-weight='700' fill='white' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+<!-- 주간·야간 모드 — 화면을 그리기 전에 정해야 흰 화면이 번쩍이지 않는다 -->
+<script src="js/core/theme.js"></script>
+</head>
+<body>
+
+<header class="top">
+  <button id="brand" class="brand" type="button">
+    <!-- 폴더에 logo.svg / logo.png 를 두면 여기에 그 로고가 들어갑니다 -->
+    <span class="brand-mark"></span>
+    <span class="brand-name"><span class="bn-org">KMA</span></span>
+  </button>
+  <nav id="toolnav" class="toolnav" aria-label="도구"></nav>
+  <div class="top-right">
+    <button id="top-theme" class="top-action" type="button"></button>
+    <!-- 관리자 화면은 로그인이 필요한 별도 페이지다. 주소를 외워 치지 않게 문을 둔다 -->
+    <a id="top-admin" class="top-action" href="admin.html"></a>
+    <button id="top-backup" class="top-action" type="button"></button>
+  </div>
+</header>
+
+<main id="main" class="main"></main>
+
+<div class="toast-wrap" id="toast-wrap"></div>
+
+<div class="busy" id="busy" hidden>
+  <div class="busy-card">
+    <div class="spinner"></div>
+    <p id="busy-text">처리하고 있어요</p>
+    <div class="busy-track" hidden><span id="busy-bar"></span></div>
+    <!-- 기다리는 동안 한 줄씩 바뀌는 말 -->
+    <p id="busy-cheer" class="busy-cheer"></p>
+  </div>
+</div>
+
+<!-- 공용 -->
+<!-- scope 는 맨 앞에 와야 한다. 아래 store 들이 저장 열쇠를 만들 때 쓴다. -->
+<script src="js/core/scope.js"></script>
+<script src="js/core/auth.js"></script>
+<script src="js/core/ui.js"></script>
+<script src="js/core/files.js"></script>
+
+<!-- 프로젝트 (고객사 × 과정) — 나머지 도구가 여기에 묶인다 -->
+<script src="js/apps/project/store.js"></script>
+
+<!-- 증빙 파일명 변환 -->
+<script src="js/apps/receipt/seed.js"></script>
+<script src="js/apps/receipt/accounts.js"></script>
+<script src="js/apps/receipt/naming.js"></script>
+<script src="js/apps/receipt/export.js"></script>
+<script src="js/apps/receipt/markup.js"></script>
+<script src="js/apps/receipt/app.js"></script>
+
+
+<!-- 제안서 자동화 -->
+<script src="js/apps/proposal/office.js"></script>
+<script src="js/apps/proposal/voc.js"></script>
+<script src="js/apps/proposal/store.js"></script>
+<script src="js/apps/proposal/views.js"></script>
+<script src="js/apps/proposal/app.js"></script>
+
+<!-- 행사사진 정리 -->
+<script src="js/apps/photos/exif.js"></script>
+<script src="js/apps/photos/imaging.js"></script>
+<script src="js/apps/photos/zip.js"></script>
+<script src="js/apps/photos/project.js"></script>
+<script src="js/apps/photos/views.js"></script>
+<script src="js/apps/photos/app.js"></script>
+
+<!-- 파워포인트 출력 (Zip 위에서 돈다) -->
+<script src="js/core/pptx.js"></script>
+
+<!-- 아웃룩으로 보내기 (relay.py 가 떠 있을 때만 동작) -->
+<script src="js/apps/mail/store.js"></script>
+<script src="js/apps/mail/views.js"></script>
+
+<!-- 외부용 견적서 (엑셀 출력 — Zip 위에서 돈다) -->
+<script src="js/core/xlsx.js"></script>
+<script src="js/apps/quote/store.js"></script>
+<script src="js/apps/quote/excel.js"></script>
+<script src="js/apps/quote/views.js"></script>
+
+<!-- 결과보고서 (만족도 · 정산 · 사진 · 영수증) -->
+<script src="js/apps/report/survey.js"></script>
+<script src="js/apps/report/store.js"></script>
+<script src="js/apps/report/views.js"></script>
+<script src="js/apps/report/app.js"></script>
+
+<!-- 프로젝트 화면 (제안서·결과보고서가 준비된 뒤에 올린다) -->
+<script src="js/apps/project/views.js"></script>
+<script src="js/apps/project/app.js"></script>
+
+<!-- 셸 -->
+<script src="js/core/shell.js"></script>
+
+<!-- 로그인 문 — 맨 마지막. 통과해야 셸이 열린다 -->
+<script src="js/core/gate.js"></script>
+</body>
+</html>

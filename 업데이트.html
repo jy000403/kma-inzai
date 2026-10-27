@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KMA 프로젝트 — 업데이트 내역</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%231b64da'/%3E%3Ctext x='16' y='22' font-family='sans-serif' font-size='15' font-weight='700' fill='white' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E">
+<style>
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css");
+
+:root{
+  --primary:#1b64da; --primary-weak:#e8f0fd;
+  --ink:#191f28; --ink-2:#333d4b; --ink-3:#6b7684; --ink-4:#8b95a1; --ink-5:#b0b8c1;
+  --line:#e5e8eb; --line-2:#f2f4f6; --bg:#f4f6f8; --surface:#fff; --fill:#f7f8fa;
+  --ok:#0f9b55; --ok-weak:#e6f6ee; --warn:#b57500; --warn-weak:#fff6e5;
+  --danger:#e5384a; --danger-weak:#ffeef0;
+  --r:11px; --r-lg:14px; --r-full:999px;
+}
+*{box-sizing:border-box}
+html{color-scheme:light}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Pretendard Variable","Pretendard","Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",-apple-system,"Segoe UI",sans-serif;
+  font-size:15px;line-height:1.7;letter-spacing:-.012em;word-break:keep-all;overflow-wrap:anywhere;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:900px;margin:0 auto;padding:0 24px 80px}
+
+header.top{background:var(--surface);border-bottom:1px solid var(--line);padding:44px 0 36px;margin-bottom:34px}
+header.top .wrap{padding-bottom:0}
+.eyebrow{font-size:13px;font-weight:700;color:var(--primary);margin:0 0 8px}
+h1{margin:0;font-size:34px;font-weight:800;letter-spacing:-.035em;line-height:1.25}
+.lede{margin:12px 0 0;font-size:16px;color:var(--ink-3);max-width:62ch}
+.meta{margin:18px 0 0;font-size:13px;color:var(--ink-4)}
+
+h2{margin:44px 0 6px;font-size:23px;font-weight:800;letter-spacing:-.03em;scroll-margin-top:20px}
+h2 .n{display:inline-grid;place-items:center;width:27px;height:27px;border-radius:8px;
+  background:var(--ink);color:#fff;font-size:14px;font-weight:700;margin-right:9px;vertical-align:2px}
+h3{margin:26px 0 6px;font-size:16.5px;font-weight:700;letter-spacing:-.02em}
+p{margin:10px 0}
+.sub{color:var(--ink-3);font-size:14.5px}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:20px 22px;margin:16px 0}
+.card.tight{padding:16px 18px}
+
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:14px 0}
+.flow span{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-full);
+  padding:7px 14px;font-size:13.5px;font-weight:600}
+.flow i{font-style:normal;color:var(--ink-5)}
+.flow span.hi{background:var(--primary);border-color:var(--primary);color:#fff}
+.flow span.new{background:var(--primary-weak);border-color:#c5d9f7;color:var(--primary)}
+
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px;background:var(--surface);
+  border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+th{text-align:left;font-size:12.5px;font-weight:600;color:var(--ink-4);padding:11px 14px;
+  border-bottom:1px solid var(--line);background:var(--fill);white-space:nowrap}
+td{padding:12px 14px;border-bottom:1px solid var(--line-2);vertical-align:top}
+tr:last-child td{border-bottom:0}
+td:first-child{font-weight:600}
+td code,p code,li code{background:var(--line-2);border-radius:5px;padding:2px 6px;font-size:.88em;
+  font-family:ui-monospace,Consolas,monospace;letter-spacing:0}
+
+ul{margin:10px 0;padding-left:20px}
+li{margin:5px 0}
+li::marker{color:var(--ink-5)}
+
+.note{border-radius:var(--r);padding:14px 16px;margin:16px 0;font-size:14.5px;line-height:1.65;
+  border:1px solid transparent;border-left-width:3px}
+.note b{display:block;margin-bottom:3px}
+.note.ok{background:#f8fdfa;border-color:#cfead9;border-left-color:var(--ok);color:#0b6b3c}
+.note.warn{background:#fffcf4;border-color:#f2e4c4;border-left-color:var(--warn);color:#6b4900}
+.note.bad{background:#fffafb;border-color:#f6dade;border-left-color:var(--danger);color:#a9273a}
+.note.info{background:#fbfcff;border-color:#d8e4f8;border-left-color:var(--primary);color:#17418c}
+
+pre{background:var(--ink);color:#e8edf4;border-radius:var(--r);padding:16px 18px;overflow:auto;
+  font-family:ui-monospace,Consolas,monospace;font-size:12.5px;line-height:1.75;letter-spacing:0;margin:14px 0}
+
+.chk{list-style:none;padding:0}
+.chk li{display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px solid var(--line-2)}
+.chk li:last-child{border-bottom:0}
+.chk .mk{flex:0 0 20px;width:20px;height:20px;border-radius:var(--r-full);background:var(--ok-weak);
+  color:var(--ok);display:grid;place-items:center;font-size:12px;font-weight:700;margin-top:2px}
+.chk .mk.x{background:var(--danger-weak);color:var(--danger)}
+.chk .mk.d{background:var(--line-2);color:var(--ink-4)}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:720px){.grid2{grid-template-columns:1fr}h1{font-size:27px}h2{font-size:20px}.wrap{padding:0 16px 60px}}
+
+.tag{display:inline-block;font-size:11.5px;font-weight:700;border-radius:6px;padding:2px 8px;vertical-align:2px;margin-left:6px}
+.tag.new{background:var(--primary-weak);color:var(--primary)}
+.tag.fix{background:var(--warn-weak);color:var(--warn)}
+
+.toc{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:18px 22px;margin:0 0 8px}
+.toc ol{margin:8px 0 0;padding-left:20px;columns:2;column-gap:28px}
+@media(max-width:720px){.toc ol{columns:1}}
+.toc li{margin:4px 0;font-size:14px}
+.toc a{color:var(--ink-2);text-decoration:none}
+.toc a:hover{color:var(--primary);text-decoration:underline}
+
+footer{margin-top:50px;padding-top:22px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-4)}
+
+</style>
+</head>
+<body>
+
+<header class="top"><div class="wrap">
+  <p class="eyebrow">KMA 프로젝트</p>
+  <h1>업데이트 내역</h1>
+  <p class="lede">제안서·결과보고서를 만들고 <b>고객사 담당자에게 메일로 보내는 것</b>까지를 한 흐름으로 묶었습니다.
+     아래는 이번에 바뀐 것과, 실제로 돌려서 확인한 결과입니다.</p>
+  <p class="meta">2026년 9월 17일 · 실행 방법은 맨 아래</p>
+</div></header>
+
+<div class="wrap">
+
+<nav class="toc">
+  <b>차례</b>
+  <ol>
+    <li><a href="#s1">제안서 작성이 세 걸음이 됐습니다</a></li>
+    <li><a href="#s2">회사 PPT 양식을 그대로 씁니다</a></li>
+    <li><a href="#s3">고친 PPT 가 날아가지 않습니다</a></li>
+    <li><a href="#s4">아웃룩으로 바로 보냅니다</a></li>
+    <li><a href="#s5">워크플로우 · 브리핑 · 팔로우업</a></li>
+    <li><a href="#s6">결과보고서 — 만족도와 정산</a></li>
+    <li><a href="#s7">외부용 견적서</a></li>
+    <li><a href="#s8">그 밖에 손본 것</a></li>
+    <li><a href="#s9">평가 기준에 대한 답</a></li>
+    <li><a href="#s10">아직 못 하는 것 · 실행 방법</a></li>
+  </ol>
+</nav>
+
+<h2 id="s1"><span class="n">1</span>제안서 작성이 세 걸음이 됐습니다 <span class="tag new">새로 바뀜</span></h2>
+<p>전에는 템플릿·커리큘럼·본문이 한 화면에 섞여 있어 <b>무엇부터 해야 하는지</b>가 보이지 않았습니다.
+   특히 템플릿을 맨 나중에 고르면, 앞서 쓴 내용이 어느 장에 들어갈지 알 수 없었습니다.</p>
+
+<div class="flow">
+  <span class="hi">1 템플릿 고르기</span><i>→</i>
+  <span>2 커리큘럼 올리기</span><i>→</i>
+  <span>3 내용 작성</span>
+</div>
+
+<div class="card">
+  <table>
+    <tr><th style="width:130px">걸음</th><th>하는 일</th></tr>
+    <tr><td>1 템플릿</td><td>올려 둔 PPT 양식이 <b>썸네일로</b> 깔립니다. 하나 고르면 다음으로 넘어갑니다.
+      양식이 없으면 <code>기본 구성</code> 으로 진행합니다.</td></tr>
+    <tr><td>2 커리큘럼</td><td>교수님이 보낸 파일을 올립니다. 없으면 <code>지금은 없습니다 — 건너뛰기</code>.</td></tr>
+    <tr><td>3 내용 작성</td><td>통화 메모 · 제안 골격 · 과정 설계 · 운영 조건 · 사례 · 예산서와
+      오른쪽 미리보기가 한 화면에 나옵니다.</td></tr>
+  </table>
+  <p class="sub" style="margin-bottom:0">끝난 칸에는 체크와 함께 <b>무엇을 골랐는지</b> 적힙니다
+    (<code>템플릿 ✓ KMA 제안서 표준양식</code>). 칸을 누르면 언제든 되돌아가 바꿀 수 있습니다.</p>
+</div>
+
+<h2 id="s2"><span class="n">2</span>회사 PPT 양식을 그대로 씁니다</h2>
+<p><b>템플릿</b> 탭에 쓰시던 제안서 PPT 를 그대로 올리세요. 여러 개 올려도 됩니다.
+   파워포인트가 그 파일을 열어 <b>장마다 그림을 뽑고</b>, 화면에 썸네일로 깔아 줍니다.</p>
+
+<h3>장마다 무엇을 채울지만 고르면 됩니다</h3>
+<table>
+  <tr><th style="width:150px">고르는 값</th><th>뜻</th></tr>
+  <tr><td>그대로 두기</td><td>양식에 있는 글이 그대로 나갑니다 — 회사 소개·인사말처럼 안 바뀌는 장</td></tr>
+  <tr><td>표지 / 상황 / 과정 설계 / 커리큘럼 / 견적 …</td><td>제안서에 쓴 내용이 그 장에 들어갑니다</td></tr>
+  <tr><td>고정 문구</td><td>직접 적어 둔 문장이 매번 들어갑니다</td></tr>
+  <tr><td>이 장 빼기</td><td>만들 때 그 장을 지웁니다</td></tr>
+</table>
+<p>처음 올리면 <b>슬라이드 제목을 보고 짐작해서 미리 골라 둡니다</b>
+  (<code>고객사 현황 분석</code>→상황, <code>소요 예산</code>→예산). 틀린 것만 바꾸면 됩니다.</p>
+
+<h3>새로 그리지 않고 양식 파일에 채웁니다</h3>
+<ul>
+  <li><b>제목</b> — 제목 자리표시자가 있으면 거기에, 없으면 그 장 <b>맨 위 글상자</b></li>
+  <li><b>본문</b> — 제목이 아닌 것 중 <b>가장 넓은 글상자</b></li>
+  <li><b>글이 없는 도형은 건드리지 않습니다</b> — 장식용 색 막대도 글상자라서, 빈 도형까지 넣으면 거기에 제목이 찍힙니다</li>
+  <li>채울 내용이 비면 그 장은 손대지 않습니다</li>
+</ul>
+<div class="note ok"><b>원본 양식은 안 바뀝니다</b>
+  파워포인트에서 사본으로 열어 다른 이름으로 저장합니다. 디자인·배경·로고·글꼴이 전부 그대로 남습니다.</div>
+
+<h2 id="s3"><span class="n">3</span>고친 PPT 가 날아가지 않습니다 <span class="tag new">새로 넣음</span></h2>
+<p>가장 흔한 일이 이겁니다. 제안서를 뽑아 <b>파워포인트에서 문구를 다듬고 장을 하나 더 넣었는데</b>,
+   고객이 인원을 바꿔 달라고 해서 다시 뽑으면 손본 것이 전부 사라집니다.</p>
+<p><code>파일로 저장</code> → <b>고친 PPT 에 바뀐 내용만 넣기</b> 를 쓰면 됩니다.</p>
+
+<div class="card">
+  <ol style="margin:0;padding-left:20px">
+    <li>파워포인트에서 손본 파일을 올립니다.</li>
+    <li>앱이 그 파일을 훑어 <b>우리 장과 짝을 지어</b> 보여 줍니다.</li>
+    <li>지난번 내보낸 뒤 <b>내용이 달라진 장만 미리 체크</b>되어 있습니다.</li>
+    <li>체크한 장의 <b>글자만</b> 바뀝니다. 나머지는 손댄 그대로입니다.</li>
+  </ol>
+</div>
+<p>장은 <b>번호가 아니라 제목으로 찾습니다.</b> 파워포인트에서 장을 더하거나 순서를 바꿔도 따라갑니다.</p>
+
+<h3>실제로 돌려 본 결과</h3>
+<p class="sub">6장짜리 제안서를 뽑고 → 파워포인트에서 <code>KMA 소개</code> 장을 3번 자리에 새로 넣고(7장),
+  <code>과정 개요</code> 문구를 직접 고친 뒤 → 앱에서 제안가를 250만→300만으로 올리고 모듈을 하나 추가했습니다.</p>
+<table>
+  <tr><th style="width:150px">장</th><th>결과</th></tr>
+  <tr><td>1 표지</td><td>그대로</td></tr>
+  <tr><td>2 과정 개요</td><td><b>직접 고친 문구 그대로 남음</b></td></tr>
+  <tr><td>3 KMA 소개</td><td><b>직접 넣은 장 그대로 남음</b></td></tr>
+  <tr><td>4 과정 설계</td><td>추가한 모듈 반영 (장이 밀려 번호가 바뀌었는데도 제목으로 정확히 찾음)</td></tr>
+  <tr><td>6 견적</td><td>3,000,000원으로 바뀜</td></tr>
+</table>
+<div class="note info"><b>세부 모양은 파워포인트에서 고치시면 됩니다</b>
+  이 앱이 건드리는 것은 제목 칸과 본문 칸의 <b>글자뿐</b>입니다.
+  도형 위치·색·글꼴·표·그림·애니메이션은 한 번도 건드리지 않습니다.</div>
+<div class="note warn"><b>한계</b>
+  제목까지 바꿔 버린 장은 못 찾습니다. 그 장은 <code>못 찾았습니다</code> 로 표시하고 건너뜁니다.</div>
+
+<h2 id="s4"><span class="n">4</span>아웃룩으로 바로 보냅니다</h2>
+<p>제안서·결과보고서 화면의 <code>메일</code> 단추를 누르면 아웃룩으로 이어집니다.</p>
+<table>
+  <tr><th style="width:130px">칸</th><th>어디서 오나</th></tr>
+  <tr><td>받는 사람</td><td>프로젝트에 적어 둔 <b>담당자 메일</b></td></tr>
+  <tr><td>제목</td><td><code>[KMA 인재개발센터 2팀] 포스코인재창조원 신임팀장 팀빌딩 워크숍 제안서</code></td></tr>
+  <tr><td>본문</td><td>인사 → 과정 개요·제안가(또는 참석·만족도) → 맺음말 → 서명</td></tr>
+  <tr><td>첨부</td><td>제안서 <code>.pptx</code> + 견적서 <code>.xlsx</code></td></tr>
+</table>
+
+<h3>내부용 문서는 빨갛게 막습니다</h3>
+<p>예산서와 정산표에는 <b>원가와 사업이익률</b>이 들어 있습니다. 고객에게 나가면 안 되는 숫자입니다.</p>
+<ul>
+  <li>첨부 목록에서 <b>기본으로 꺼져 있고</b> <code>내부용</code> 표시가 붙습니다</li>
+  <li>체크하면 경고가 뜨고, 보내기 전 확인 창에도 한 번 더 나옵니다</li>
+  <li>사진 zip 을 메일로 보낼 때는 <b>정산표를 아예 빼고</b> 다시 묶습니다</li>
+</ul>
+
+<div class="note bad"><b>메일이 안 갈 때 — 검은 창이 떠 있어야 합니다</b>
+  브라우저는 아웃룩에 파일을 직접 넣지 못합니다. <code>실행하기.bat</code> 이 띄우는 창이 대신 넣어 줍니다.
+  <b>그 창을 닫으면 메일 보내기와 PPT 양식 기능이 멈춥니다.</b>
+  이번에 <b>연결이 안 되면 두 버튼을 아예 못 누르게</b> 하고, 화면에 해결 방법과 <code>다시 확인</code> 단추를 넣었습니다.
+  <span class="tag fix">고침</span></div>
+<p class="sub">아웃룩 창이 브라우저 뒤에 숨어 “아무 일도 안 일어난” 것처럼 보이던 것도 고쳤습니다 —
+  이제 창을 앞으로 끌어올립니다. <span class="tag fix">고침</span></p>
+
+<h2 id="s5"><span class="n">5</span>워크플로우 · 브리핑 · 팔로우업 <span class="tag new">새로 넣음</span></h2>
+<p>전에는 카드에 <b>문서가 있냐</b>만 보였습니다. 이제는 <b>일이 어디까지 갔냐</b>를 봅니다.</p>
+
+<div class="flow">
+  <span>제안서 만들기</span><i>→</i><span>제안 발송</span><i>→</i>
+  <span class="new">브리핑</span><i>→</i><span>수주</span><i>→</i>
+  <span>운영</span><i>→</i><span>결과보고서</span><i>→</i><span>결과 전달</span>
+</div>
+
+<ul>
+  <li>맨 위에 <b><code>다음 할 일</code> 한 줄</b>. 지금 할 것 하나만 크게 적고, 누르면 그 화면이 열립니다.</li>
+  <li><b>메일을 보내면 칸이 저절로 넘어갑니다.</b> 제안서를 보내면 <code>제안 준비 → 제안 제출</code>,
+      결과보고서를 보내면 <code>완료</code> 로.</li>
+  <li>언제 누구에게 보냈는지 칸에 남습니다 — <code>9/17 · 발송</code> 또는 <code>9/17 · 아웃룩으로 넘김</code>.</li>
+</ul>
+<p class="sub">아웃룩 창에서 실제로 눌렀는지는 앱이 알 수 없어서, <b>아는 만큼만</b> 적습니다.</p>
+
+<h3>제안을 보내 놓고 잊지 않게</h3>
+<p>제안을 보낸 직후 <b>“다음 연락을 잡아 둘까요”</b> 창이 뜹니다. <code>연락(회신 확인)</code> 또는
+  <code>브리핑 미팅</code> 과 날짜를 적어 두면:</p>
+<ul>
+  <li>그날이 되면 <b>프로젝트 목록 맨 위로 올라오고</b> 빨간 띠로 <code>오늘 연락할 곳 N</code> 이 뜹니다</li>
+  <li>전체 현황(홈)에 <code>오늘 연락할 곳</code> · <code>이번 주 연락</code> 이 숫자로 올라옵니다</li>
+  <li>프로젝트를 열면 <code>다음 할 일</code> 이 <b>담당자 이름과 메일 주소까지</b> 보여 줍니다</li>
+  <li>연락했으면 <code>했습니다</code> 한 번</li>
+</ul>
+<p>브리핑 날짜를 적으면 단계가 자동으로 <b>브리핑</b> 으로 바뀝니다.</p>
+
+<h2 id="s6"><span class="n">6</span>결과보고서 — 만족도와 정산</h2>
+
+<h3>만족도는 붙여넣기만</h3>
+<p>구글폼 응답 시트나 엑셀 집계표를 <b>표째로 복사해서 붙여넣으면</b> 어떤 열이 점수이고
+   어떤 열이 서술형인지 스스로 가릅니다.</p>
+<table>
+  <tr><th style="width:190px">열 모양</th><th>처리</th></tr>
+  <tr><td>5점·7점·10점 척도</td><td>평균 · 분포 · 긍정응답률 · 5점 환산</td></tr>
+  <tr><td>글자</td><td>서술형 응답으로 모아 수강생 의견 슬라이드에</td></tr>
+  <tr><td>타임스탬프·이메일·이름</td><td>응답자 정보로 보고 통계에서 제외</td></tr>
+  <tr><td>척도 범위를 넘는 숫자</td><td><b>건너뛴 열</b>로 그대로 보여 줌 — 감추지 않습니다</td></tr>
+</table>
+<p><code>추천의향(0~10)</code> 은 <b>NPS 로 따로 계산</b>하고 종합 만족도 평균에서는 뺍니다. 척도가 달라 섞으면 평균이 왜곡됩니다.</p>
+
+<h3>정산은 계획과 실제를 나란히</h3>
+<p>제안서에 쓴 <b>예산(계획)</b> 과 영수증으로 처리한 <b>실제 집행액</b>을 계정별로 견줍니다.
+   영수증 이력에 금액·계정·프로젝트가 함께 남아, 그 프로젝트 것만 자동으로 합쳐집니다.</p>
+<pre>계정              계획        실제      차액       집행률
+원)비상임강사료   1,600,000        0   -1,600,000     0%
+원)교육생숙식비   1,500,000  1,350,000   -150,000    90%
+원)지급수수료             0    880,000    880,000     —
+원)교재비           450,000    450,000          0   100%
+원가 합계         3,550,000  2,680,000   -870,000   75.5%
+
+제안가(공급가)               4,734,000
+사업이익률              25%      43.4%</pre>
+
+<h2 id="s7"><span class="n">7</span>외부용 견적서</h2>
+<p>전달주신 <code>(견적서)클라우드네트웍스 대리과장 승진자과정_KMA.xlsx</code> <b>양식을 그대로 옮겼습니다</b> —
+   열 너비, 행 높이, 병합, 테두리, 표시형식, 셀 주소까지 같습니다.</p>
+<ul>
+  <li>예산 항목에서 자동으로 채우고, <b>원가·사업이익률·내부 계정명은 한 글자도 안 들어갑니다</b></li>
+  <li>부가세 면세/별도, 합계 천단위 절사를 켜고 끌 수 있습니다</li>
+  <li><b>값이 아니라 수식으로</b> 씁니다 — 받아서 단가를 고치면 견적가·소계·합계·한글 금액이 같이 바뀝니다</li>
+</ul>
+<p class="sub">같은 값으로 다시 만들어 원본과 대조했습니다 —
+  강사료 400,000×8회 = 3,200,000, 교재비용 15,000×7명 = 105,000, 합계 <b>3,305,000</b>,
+  한글 금액 <b>금삼백삼십만오천원정</b> 까지 일치.</p>
+
+<h2 id="s8"><span class="n">8</span>그 밖에 손본 것</h2>
+<table>
+  <tr><th style="width:190px">무엇</th><th>왜</th></tr>
+  <tr><td>‘강사’ → <b>‘교수님’</b></td><td>사람을 가리키는 말은 전부 바꿨습니다.
+    <code>원)비상임강사료</code> 같은 계정과목과 견적서 항목명은 공식 명칭이라 그대로 뒀습니다.</td></tr>
+  <tr><td>빈 화면의 그림 상자</td><td>뜻 없는 아이콘이 네모 안에 하나 떠 있었습니다. 지웠습니다 —
+    빈 화면에는 <b>무엇이 없고 무엇을 하면 되는지</b>만 적습니다.</td></tr>
+  <tr><td>고객사 관리 제거</td><td>프로젝트가 그 자리를 대신합니다. 코드는 <code>_고객사-보류/</code> 에 그대로 있습니다.</td></tr>
+  <tr><td>제안서·결과보고서가 <b>.pptx</b> 로</td><td>붙여넣을 텍스트가 아니라 더블클릭하면 열리는 진짜 파일입니다.</td></tr>
+  <tr><td>화면 머리·탭·버튼 정리</td><td>제목 크기가 제각각이던 것을 한 틀로, 탭은 이어진 막대로,
+    지우는 버튼은 손이 닿았을 때만 빨개지게, 경고 상자는 노란 벽에서 왼쪽 색 띠로.</td></tr>
+  <tr><td>선택 상자 화살표가 두 개</td><td>우리가 그린 화살표 위에 브라우저 기본 화살표가 겹쳐 있었습니다.</td></tr>
+  <tr><td>홈의 숫자 칩이 사라지던 것</td><td>화면이 860px 보다 좁으면 숨기게 돼 있어 노트북에서도 안 보였습니다. 680px 로 낮췄습니다.</td></tr>
+</table>
+
+<h2 id="s9"><span class="n">9</span>평가 기준에 대한 답</h2>
+
+<div class="grid2">
+  <div class="card tight">
+    <h3 style="margin-top:0">발전 가능성 — 타 부서 적용</h3>
+    <p class="sub" style="margin-bottom:8px">부서에 매인 값은 네 곳뿐이고, 그중 셋은 <b>코드가 아니라 화면에서</b> 바꿉니다.</p>
+    <ul style="margin:0">
+      <li><b>양식이 코드에 박혀 있지 않습니다.</b> 그 부서 PPT 를 올리면 그대로 돌아갑니다</li>
+      <li>실제로 과정 운영 관리와 고객사 관리를 <b>코드를 지우지 않고</b> 떼어 냈고, 증빙·사진은 다른 화면 안으로 옮겨 붙였습니다</li>
+      <li><code>pptx.js</code> · <code>xlsx.js</code> · <code>zip.js</code> 는 어느 화면에도 기대지 않습니다</li>
+    </ul>
+  </div>
+  <div class="card tight">
+    <h3 style="margin-top:0">사용 편의성</h3>
+    <ul style="margin:0">
+      <li><b>같은 값을 두 번 타이핑하지 않습니다</b> — 프로젝트에 한 번 넣으면 끝까지 따라갑니다</li>
+      <li>읽을 수 있는 것은 읽습니다 (커리큘럼·만족도)</li>
+      <li><b>못 하는 것은 못 한다고 말합니다</b> — 이미지 OCR, 스캔 PDF</li>
+      <li>위험한 것은 표시합니다 — 원가가 든 문서는 <code>내부용</code></li>
+    </ul>
+  </div>
+</div>
+
+<h3>업무 활용성 — 없어지는 손작업</h3>
+<table>
+  <tr><th style="width:48%">원래 하던 일</th><th>지금</th></tr>
+  <tr><td>교수님 커리큘럼을 보며 제안서에 옮겨 적기</td><td>파일 올리면 모듈 후보로 나옴</td></tr>
+  <tr><td>제안서 PPT 를 양식에서 복사해 고쳐 쓰기</td><td>양식 골라 누르면 채워진 파일이 나옴</td></tr>
+  <tr><td>견적서를 따로 엑셀로 만들기</td><td>예산 항목에서 자동 · 원가는 빠짐</td></tr>
+  <tr><td>제안가·이익률 계산기 두드리기</td><td>목표 이익률 넣으면 역산</td></tr>
+  <tr><td>만족도 엑셀 함수로 집계</td><td>붙여넣으면 문항별 평균·분포·NPS</td></tr>
+  <tr><td>영수증 금액을 정산표에 옮겨 적기</td><td>프로젝트별 계정으로 자동 합산</td></tr>
+  <tr><td>결과보고서 PPT 새로 쓰기</td><td>만족도·사진·정산이 들어간 파일이 나옴</td></tr>
+  <tr><td>메일 쓰고 파일 찾아 붙이기</td><td>받는 사람·제목·본문·첨부가 채워진 아웃룩 창</td></tr>
+  <tr><td>제안 보내 놓고 언제 연락할지 기억하기</td><td>날짜를 적어 두면 그날 목록 맨 위로</td></tr>
+</table>
+
+<h3>실제 도입 가능성</h3>
+<ul class="chk">
+  <li><span class="mk">✓</span><span><b>설치할 것이 거의 없습니다</b> — 파이썬 표준 라이브러리만. <code>pip install</code> 없음,
+    파워포인트·아웃룩 자동화용 <code>pywin32</code> 도 없음(윈도우에 늘 있는 PowerShell 로 부릅니다)</span></li>
+  <li><span class="mk">✓</span><span><b>이미 쓰는 프로그램을 그대로</b> — 새 계정도, 새 시스템 승인도 필요 없습니다</span></li>
+  <li><span class="mk">✓</span><span><b>자료가 이 PC 밖으로 안 나갑니다</b> — 서버도 클라우드도 계정도 없습니다</span></li>
+  <li><span class="mk">✓</span><span><b>폴더 하나가 전부</b> — 복사해서 다른 PC 에 두고 실행하면 그대로 돕니다</span></li>
+  <li><span class="mk">✓</span><span><b>반쪽으로도 돕니다</b> — 파이썬이 없어도 제안서 작성·만족도 분석·증빙·사진 정리는 다 됩니다</span></li>
+</ul>
+
+<h2 id="s10"><span class="n">10</span>아직 못 하는 것 · 실행 방법</h2>
+<ul class="chk">
+  <li><span class="mk x">!</span><span><b>여러 사람이 같이 보는 기능이 없습니다.</b> 한 사람의 PC 에서 한 사람이 씁니다.</span></li>
+  <li><span class="mk x">!</span><span>윈도우 + 아웃룩(클래식) + 파워포인트가 있어야 메일·양식 기능이 됩니다.
+    새 아웃룩(Web 버전)은 확인하지 못했습니다.</span></li>
+  <li><span class="mk d">–</span><span>사진 도구는 한 번에 한 건만 작업합니다.</span></li>
+  <li><span class="mk d">–</span><span>이미지 속 글자(OCR)는 읽지 못합니다. 원본을 옆에 띄워 드립니다.</span></li>
+  <li><span class="mk d">–</span><span>제안서 초안 <b>문장</b>은 직접 쓰셔야 합니다. 구조와 자리는 잡아 드립니다.</span></li>
+</ul>
+
+<div class="note info"><b>실행</b>
+  폴더의 <code>실행하기.bat</code> 을 더블클릭하면 검은 창이 뜨고 브라우저가 열립니다.
+  <b>그 창은 켜 두세요</b> — 메일 보내기와 PPT 양식이 그 창을 씁니다. 끄실 때는 창을 닫으면 됩니다.<br>
+  주소는 <code>http://127.0.0.1:8765/index.html</code> 입니다.
+</div>
+
+<footer>
+  KMA 프로젝트 · 이 문서와 모든 자료는 이 PC 안에만 있습니다.
+</footer>
+
+</div>
+</body>
+</html>

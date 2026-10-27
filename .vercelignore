@@ -1,0 +1,31 @@
+# 비밀 값 — Vercel 에는 대시보드 환경변수로 넣는다
+.env
+.env.local
+anthropic.json
+notion.json
+supabase.json
+
+# 로컬 서버 켜는 것 (웹에서는 api/index.py 가 대신한다)
+relay.py
+*.bat
+
+# 견적서 엑셀 양식(forms/)은 올라간다 — public/ 밖이라 누구도 내려받을 수 없고,
+# 서버 함수만 읽는다(vercel.json includeFiles). 웹에서도 견적서를 만들려면 필요하다.
+
+# 원본 PPT — 회사 양식이 정적 파일로 새어 나가지 않게. 썸네일(png·svg)만 올라간다.
+# 웹에서 쓸 원본은 Supabase Storage 에 둔다:  python -m server.storage_sync
+*.pptx
+
+# 문서 · 시안 · 보류 코드
+README.md
+*.md
+KMA_제안서자동화_데모.html
+아이콘후보.html
+업데이트.html
+public/js/apps/_*/
+fonts/
+
+# 캐시
+__pycache__/
+*.pyc
+.vercel/
